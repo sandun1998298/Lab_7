@@ -1,0 +1,286 @@
+POST-APOCALYPTIC MORSE CODE TERMINAL - CIRCUIT DIAGRAM
+=====================================================
+
+                            +5V Rail
+                              │
+                    ┌─────────┴─────────┐
+                    │                   │
+                    │                   │
+               10kΩ │              220Ω │
+                    │                   │
+                    │                   └─────┐
+                    │                         │
+                    │         ARDUINO UNO     │     LED (Red)
+                    │        ┌─────────────┐  │      ┌─┐
+                    │     ┌──│5V        13 │──┴──────│+│
+                    │     │  │             │         │-│
+                    │     │  │         12  │─────────└─┘
+                    │     │  │             │         │
+                    │     │  │         11  │         │
+                    │     │  │             │         │
+                    │     │  │         10  │         │
+                    │     │  │             │         │
+                    │     │  │         9   │         │
+                    │     │  │             │         │
+                    │     │  │         8   │──┐      │
+                    │     │  │             │  │      │
+                    │     │  │         7   │──┼──┐   │
+                    │     │  │             │  │  │   │
+                    │     │  │         6   │  │  │   │
+                    │     │  │             │  │  │   │
+                    │     │  │         5   │──┤  │   │
+                    │     │  │             │  │  │   │
+                    │     │  │         4   │──┤  │   │
+                    │     │  │             │  │  │   │
+                    │     │  │         3   │──┤  │   │
+                    │     │  │             │  │  │   │
+                    │     │  │         2   │──┤  │   │
+                    │     │  │             │  │  │   │
+                    │     │  │         1   │  │  │   │
+                    │     │  │             │  │  │   │
+                    │     │  │         0   │  │  │   │
+                    │     │  │             │  │  │   │
+                    │     │  │AREF      A5 │  │  │   │
+                    │     │  │             │  │  │   │
+                    │     └──│GND       A4 │  │  │   │
+                    │        │             │  │  │   │
+                    │        │          A3 │  │  │   │
+                    │        │             │  │  │   │
+                    │        │          A2 │  │  │   │
+                    │        │             │  │  │   │
+                    │        │          A1 │  │  │   │
+                    │        │             │  │  │   │
+                    │        │          A0 │  │  │   │
+                    │        │             │  │  │   │
+                    │        │         VIN │  │  │   │
+                    │        └─────────────┘  │  │   │
+                    │                         │  │   │
+                    │          PIEZO BUZZER   │  │   │
+                    │            ┌─────┐     │  │   │
+                    └────────────│ +   │─────┘  │   │
+                                 │  -  │        │   │
+                                 └─────┘        │   │
+                                   │            │   │
+                                   │            │   │
+                                   │            │   │
+                          GND ─────┴────────────┼───┼─────┐
+                                                │   │     │
+                                                │   │     │
+                              PUSH BUTTON       │   │     │
+                                 ┌─────┐       │   │     │
+                                 │  ○  │───────┘   │     │
+                                 │  ○  │           │     │
+                                 └─────┘           │     │
+                                   │               │     │
+                                   │               │     │
+                                   │               │     │
+                                 GND               │     │
+                                                   │     │
+                                                   │     │
+                              16x2 LCD DISPLAY    │     │
+                         ┌─────────────────────┐  │     │
+                    ┌────│VSS              VDD │──┼─────┤ +5V
+                    │    │                     │  │     │
+                    │    │V0               A   │──┼─────┘
+                    │    │                     │  │
+                  GND    │RS               K   │──┘
+                         │                     │
+                    ┌────│E              D7-D4 │──┐
+                    │    │                     │  │
+                    │    │               D3-D0 │  │ (Not Used)
+                    │    └─────────────────────┘  │
+                    │                             │
+                    │    ┌────────────────────────┘
+                    │    │   ┌─────────────────────┐
+                    │    │   │   ┌─────────────────┤
+                    │    │   │   │   ┌─────────────┤
+                    │    │   │   │   │             │
+                    │    │   │   │   │             │
+                    └────┼───┼───┼───┼─────────────┘
+                         │   │   │   │
+                      Pin12 Pin11 Pin5-2 (D7-D4)
+
+
+COMPONENT SPECIFICATIONS:
+========================
+
+1. ARDUINO UNO R3
+   - Microcontroller: ATmega328P
+   - Operating Voltage: 5V
+   - Input Voltage: 7-12V (via VIN)
+   - Digital I/O Pins: 14
+   - Analog Input Pins: 6
+   - Flash Memory: 32KB
+   - SRAM: 2KB
+   - EEPROM: 1KB
+   - Clock Speed: 16MHz
+
+2. LCD DISPLAY (16x2)
+   - Controller: HD44780 or compatible
+   - Display: 16 characters × 2 lines
+   - Backlight: LED (optional)
+   - Interface: 4-bit parallel
+   - Operating Voltage: 5V
+   - Viewing Angle: 45°
+
+   Pin Connections:
+   VSS → GND (Power Supply Ground)
+   VDD → +5V (Power Supply)
+   V0  → GND or Potentiometer (Contrast)
+   RS  → Pin 12 (Register Select)
+   E   → Pin 11 (Enable)
+   D4  → Pin 5  (Data Line 4)
+   D5  → Pin 4  (Data Line 5)
+   D6  → Pin 3  (Data Line 6)
+   D7  → Pin 2  (Data Line 7)
+   A   → +5V (Backlight Anode)
+   K   → GND (Backlight Cathode)
+
+3. PUSH BUTTON
+   - Type: Momentary contact
+   - Configuration: SPST (Single Pole Single Throw)
+   - Actuation Force: 150-300g
+   - Contact Rating: 50mA @ 24VDC
+   - Debounce: Software implemented
+   
+   Connections:
+   Terminal 1 → Pin 7 (with 10kΩ pull-up to +5V)
+   Terminal 2 → GND
+
+4. LED (Status Indicator)
+   - Type: Standard 5mm LED
+   - Color: Red (or any visible color)
+   - Forward Voltage: 2.0-2.2V
+   - Forward Current: 20mA
+   - Current Limiting Resistor: 220Ω
+   
+   Connections:
+   Anode (+) → Pin 13
+   Cathode (-) → 220Ω resistor → GND
+
+5. PIEZO BUZZER
+   - Type: Active buzzer
+   - Operating Voltage: 3-5V
+   - Frequency: 800Hz ± 200Hz
+   - Sound Pressure: 85dB @ 10cm
+   - Current Consumption: <30mA
+   
+   Connections:
+   Positive (+) → Pin 8
+   Negative (-) → GND
+
+6. RESISTORS
+   - R1: 220Ω ±5% (for LED current limiting)
+     Color Code: Red-Red-Brown-Gold
+   - R2: 10kΩ ±5% (for button pull-up)
+     Color Code: Brown-Black-Orange-Gold
+
+7. BREADBOARD
+   - Type: Half-size or full-size
+   - Tie Points: 400+ (half) or 830+ (full)
+   - Power Rails: 2 (positive and negative)
+   - Material: ABS plastic base
+
+8. JUMPER WIRES
+   - Type: Male-to-Male
+   - Quantity: ~20 pieces
+   - Length: 10-20cm
+   - Colors: Assorted for organization
+
+9. USB CABLE
+   - Type: USB A to USB B
+   - Purpose: Programming and Serial Communication
+   - Length: 1-2 meters
+   - Data Rate: Full Speed USB 2.0
+
+WIRING SUMMARY:
+==============
+
+Power Distribution:
+- +5V from Arduino to LCD VDD, LCD backlight, button pull-up
+- GND common rail for all components
+
+Digital Pin Usage:
+- Pin 2-5:  LCD data lines (D7-D4)
+- Pin 7:    Push button input (with pull-up)
+- Pin 8:    Piezo buzzer output
+- Pin 11:   LCD Enable
+- Pin 12:   LCD Register Select
+- Pin 13:   LED output (built-in LED also works)
+
+TIMING CHARACTERISTICS:
+======================
+
+Morse Code Timing (ITU Standard):
+- Dot duration: 200ms
+- Dash duration: 600ms (3 × dot)
+- Inter-symbol gap: 200ms
+- Inter-character gap: 600ms (3 × dot)
+- Inter-word gap: 1400ms (7 × dot)
+
+Button Timing:
+- Debounce delay: 50ms
+- Dot/Dash threshold: 400ms
+- Character timeout: 1000ms
+
+System Timing:
+- Serial baud rate: 9600
+- LCD initialization: ~100ms
+- Buzzer frequency: 800Hz
+- Loop execution: Non-blocking
+
+POWER REQUIREMENTS:
+==================
+
+Component Power Consumption:
+- Arduino Uno: ~50mA (including regulator losses)
+- LCD Display: ~20mA (without backlight), ~150mA (with backlight)
+- LED: 20mA (when on)
+- Buzzer: ~30mA (when active)
+- Button: <1mA (negligible)
+
+Total Maximum Current: ~250mA
+Recommended Power Supply: USB (5V, 500mA) or 7-12V adapter
+
+CONSTRUCTION NOTES:
+==================
+
+1. Use breadboard for prototyping
+2. Keep wires short to minimize noise
+3. Use different colors for power, ground, and signal wires
+4. Test each component individually before integration
+5. Verify all connections before powering on
+6. Use proper resistor values for LED current limiting
+7. Ensure good contact in breadboard connections
+8. Mount components securely to prevent disconnection
+
+TROUBLESHOOTING CHECKLIST:
+=========================
+
+Power Issues:
+□ Check +5V and GND connections
+□ Verify USB cable connection
+□ Test Arduino with simple LED blink
+
+LCD Issues:
+□ Verify all 6 data/control pins
+□ Check contrast setting (V0 pin)
+□ Test with simple "Hello World" program
+
+Button Issues:
+□ Verify pull-up resistor connection
+□ Test button continuity with multimeter
+□ Check for proper debouncing in code
+
+Audio/Visual Issues:
+□ Test LED with simple on/off program
+□ Verify buzzer polarity and connections
+□ Check pin assignments match code
+□ Test buzzer with tone() function
+
+Serial Issues:
+□ Verify USB cable and drivers
+□ Check baud rate setting (9600)
+□ Test with Arduino IDE Serial Monitor
+
+This circuit provides a robust foundation for the post-apocalyptic Morse code terminal, designed for reliability in harsh conditions while maintaining simplicity for field repairs.
