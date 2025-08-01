@@ -1,0 +1,215 @@
+POST-APOCALYPTIC MORSE CODE TERMINAL - CLEAR CIRCUIT DIAGRAM
+=============================================================
+
+                                   +5V
+                                    │
+                                    ├─────────────────────────────────────┐
+                                    │                                     │
+                                    │                                     │
+                                   ┌┴┐                                   ┌┴┐
+                               10kΩ│ │                               220Ω│ │
+                                   │ │                                   │ │
+                                   └┬┘                                   └┬┘
+                                    │                                     │
+         ┌─────────────────────────┬┴──┐                                  │
+         │                        │   │                                  │
+    ┌────┴────┐              ┌────┴───▼──────────────────────────────────┴──┐
+    │         │              │                                              │
+    │ BUTTON  │              │              ARDUINO UNO                    │
+    │  ┌─┐    │              │                                              │
+    │  │ │    │              │  Digital Pins    │    Analog Pins           │
+    │  │ │○───┼──────────────┤ 0 RX        A0 ├─                         │
+    │  │ │    │              │ 1 TX        A1 ├─                         │
+    │  └─┘    │              │ 2           A2 ├─                         │
+    │    │    │              │ 3  ~        A3 ├─                         │
+    │    └────┼──────────────┤ 4           A4 ├─                         │
+    └─────────┘              │ 5  ~        A5 ├─                         │
+                             │ 6  ~           │                          │
+                             │ 7              │                          │
+                             │ 8              │                          │
+                             │ 9  ~           │                          │
+                             │10  ~           │                          │
+                             │11  ~           │                          │
+                             │12              │                          │
+                             │13              │    Power                  │
+                             │                │  ┌─────┐                 │
+                             │                │  │ 3V3 ├─                │
+                             │                │  │  5V ├─┬───────────────┤
+                             │                │  │ GND ├─┼─┐             │
+                             │                │  │ GND ├─┘ │             │
+                             │                │  │ VIN ├─  │             │
+                             │                │  └─────┘   │             │
+                             └────────────────────────────┬┴─────────────┘
+                                                          │
+                                                         GND
+                                                          │
+                 ┌────────────────────────────────────────┼─────────────────┐
+                 │                                        │                 │
+                 │                                        │                 │
+        ┌────────▼────────┐                     ┌─────────▼──────┐          │
+        │                 │                     │                │          │
+        │   16x2 LCD      │                     │  PIEZO BUZZER  │          │
+        │                 │                     │                │          │
+        │ ┌─────────────┐ │                     │      ┌───┐     │          │
+        │ │             │ │                     │    ┌─┤ + ├─────┼──────────┤
+        │ │   DISPLAY   │ │                     │    │ └───┘     │          │
+        │ │             │ │                     │    │           │          │
+        │ └─────────────┘ │                     │    │  ┌───┐    │          │
+        │                 │                     │    └──┤ - ├────┼──────────┘
+        │  1  2  3  4  5  │                     │       └───┘    │
+        │ VSS VDD V0 RS E │                     │                │
+        │  6  7  8  9 10  │                     └────────────────┘
+        │ D4 D5 D6 D7     │
+        │    11 12 13 14  │
+        │    A  K         │
+        └─────┬─┬─┬─┬─┬───┘
+              │ │ │ │ │
+              │ │ │ │ └──── Pin 11 (Enable)
+              │ │ │ └────── Pin 12 (Register Select)
+              │ │ └──────── GND (Contrast)
+              │ └────────── +5V
+              └──────────── GND
+
+
+                         LED CIRCUIT
+                    ┌─────────────────┐
+                    │                 │
+         Pin 13 ────┤                 │
+                    │      ┌─────┐    │
+                    │    ┌─┤ LED ├─┐  │
+                    │    │ └─────┘ │  │
+                    │    │   Red   │  │
+                    │    │  5mm    │  │
+                    │    │         │  │
+                    │    │   ┌─┐   │  │
+                    │    └───┤R├───┘  │
+                    │        └─┘      │
+                    │       220Ω      │
+                    │                 │
+         GND ───────┤                 │
+                    └─────────────────┘
+
+
+DETAILED PIN CONNECTIONS:
+========================
+
+ARDUINO UNO → LCD (16x2)
+┌─────────────┬─────────────┬─────────────────────┐
+│ Arduino Pin │   LCD Pin   │     Description     │
+├─────────────┼─────────────┼─────────────────────┤
+│    GND      │   VSS (1)   │   Ground            │
+│    5V       │   VDD (2)   │   Power Supply      │
+│    GND      │   V0 (3)    │   Contrast (or pot) │
+│    12       │   RS (4)    │   Register Select   │
+│    11       │   E (6)     │   Enable            │
+│    5        │   D4 (11)   │   Data Bit 4        │
+│    4        │   D5 (12)   │   Data Bit 5        │
+│    3        │   D6 (13)   │   Data Bit 6        │
+│    2        │   D7 (14)   │   Data Bit 7        │
+│    5V       │   A (15)    │   Backlight +       │
+│    GND      │   K (16)    │   Backlight -       │
+└─────────────┴─────────────┴─────────────────────┘
+
+ARDUINO UNO → OTHER COMPONENTS
+┌─────────────┬─────────────────┬─────────────────────┐
+│ Arduino Pin │   Component     │     Description     │
+├─────────────┼─────────────────┼─────────────────────┤
+│    13       │   LED Anode     │   Status LED        │
+│    GND      │   LED Cathode   │   Through 220Ω     │
+│    8        │   Buzzer +      │   Piezo Buzzer      │
+│    GND      │   Buzzer -      │   Ground            │
+│    7        │   Button        │   Input (Pull-up)   │
+│    GND      │   Button        │   Ground            │
+│    5V       │   Pull-up Res   │   10kΩ to Pin 7     │
+└─────────────┴─────────────────┴─────────────────────┘
+
+BREADBOARD LAYOUT DIAGRAM:
+=========================
+
+     a b c d e   f g h i j        a b c d e   f g h i j
+   ┌─────────────────────────┐  ┌─────────────────────────┐
+ 1 │ + + + + +   + + + + + │  │ + + + + +   + + + + + │ 30
+   │                       │  │                       │
+ 2 │ + + + + +   + + + + + │  │ + + + + +   + + + + + │ 29
+   │                       │  │                       │
+ 3 │ - - - - -   - - - - - │  │ - - - - -   - - - - - │ 28
+   │                       │  │                       │
+ 4 │ - - - - -   - - - - - │  │ - - - - -   - - - - - │ 27
+   │                       │  │                       │
+ 5 │ ○ ○ ○ ○ ○   ○ ○ ○ ○ ○ │  │ ○ ○ ○ ○ ○   ○ ○ ○ ○ ○ │ 26
+   │                       │  │                       │
+ 6 │ ○ ○ ○ ○ ○   ○ ○ ○ ○ ○ │  │ ○ ○ ○ ○ ○   ○ ○ ○ ○ ○ │ 25
+   │                       │  │                       │
+   │       ARDUINO         │  │                       │
+   │       PLACEMENT       │  │    LCD PLACEMENT      │
+   │                       │  │                       │
+   │                       │  │                       │
+   │                       │  │                       │
+   │                       │  │                       │
+   │ ○ ○ ○ ○ ○   ○ ○ ○ ○ ○ │  │ ○ ○ ○ ○ ○   ○ ○ ○ ○ ○ │ 10
+   │                       │  │                       │
+ 9 │ ○ ○ ○ ○ ○   ○ ○ ○ ○ ○ │  │ ○ ○ ○ ○ ○   ○ ○ ○ ○ ○ │  9
+   └─────────────────────────┘  └─────────────────────────┘
+
+COMPONENT PLACEMENT ON BREADBOARD:
+- Arduino Uno: Straddles center gap (pins in rows 6-19)
+- LCD: Right side (rows 10-25)
+- Push Button: Left side (rows 5-6)
+- LED: Left side (row 8) with resistor
+- Piezo Buzzer: Left side (rows 20-21)
+- Resistors: In tie point rows as needed
+
+POWER RAIL CONNECTIONS:
+- Top red rail (+): Connected to Arduino 5V
+- Top blue rail (-): Connected to Arduino GND
+- Bottom rails: Connect to top rails with jumper wires
+
+STEP-BY-STEP WIRING GUIDE:
+=========================
+
+1. POWER CONNECTIONS:
+   - Red jumper: Arduino 5V → Breadboard + rail
+   - Black jumper: Arduino GND → Breadboard - rail
+
+2. LCD CONNECTIONS (6 wires):
+   - Arduino Pin 12 → LCD RS (pin 4)
+   - Arduino Pin 11 → LCD E (pin 6)
+   - Arduino Pin 5 → LCD D4 (pin 11)
+   - Arduino Pin 4 → LCD D5 (pin 12)
+   - Arduino Pin 3 → LCD D6 (pin 13)
+   - Arduino Pin 2 → LCD D7 (pin 14)
+   - LCD VSS (pin 1) → - rail
+   - LCD VDD (pin 2) → + rail
+   - LCD V0 (pin 3) → - rail (or center of 10kΩ pot)
+   - LCD A (pin 15) → + rail
+   - LCD K (pin 16) → - rail
+
+3. LED CIRCUIT:
+   - Arduino Pin 13 → LED anode (long leg)
+   - LED cathode (short leg) → 220Ω resistor → - rail
+
+4. BUZZER CONNECTIONS:
+   - Arduino Pin 8 → Buzzer + (marked side)
+   - Buzzer - → - rail
+
+5. BUTTON CIRCUIT:
+   - Arduino Pin 7 → one button terminal
+   - Same terminal → 10kΩ resistor → + rail
+   - Other button terminal → - rail
+
+TESTING CHECKLIST:
+================
+□ Power: 5V between + and - rails
+□ LCD: "Morse Terminal" appears on power-up
+□ LED: Lights when Pin 13 goes HIGH
+□ Buzzer: Sounds when Pin 8 activated
+□ Button: Pin 7 reads LOW when pressed
+□ Serial: 9600 baud communication works
+
+TROUBLESHOOTING:
+===============
+- No LCD display: Check power and contrast (V0)
+- Scrambled LCD: Verify data pin connections
+- No button response: Check pull-up resistor
+- No sound: Verify buzzer polarity
+- No LED: Check resistor and LED orientation

@@ -1,0 +1,168 @@
+MORSE CODE TERMINAL - SIMPLE WIRING DIAGRAM
+===========================================
+
+🔌 WIRE COLORS GUIDE:
+Red = Power (+5V)    Black = Ground    Other colors = Signal wires
+
+                    ARDUINO UNO
+              ┌─────────────────────┐
+              │  ┌───┐         ┌───┐│
+              │  │USB│         │PWR││
+              │  └───┘         └───┘│
+              │ ○ ○ ○ ○ ○ ○ ○ ○ ○ ○ │ ← Digital Pins
+              │13121110 9 8 7 6 5 4 │
+              │ │ │ │ │ │ │ │ │ │ │ │
+              │ │ │ │ │ │ │ │ │ │ │ │
+              │ │ │ │ │ │ │ │ │ │ │ │
+              │ │ │ │ │ │ │ │ │ │ │ │
+              │ │ │ │ │ │ │ │ │ │ │ │
+              │ │ │ │ │ │ │ │ │ │ │ └── Pin 4 ── Yellow ──┐
+              │ │ │ │ │ │ │ │ │ │ └──── Pin 5 ── Orange ──┼─┐
+              │ │ │ │ │ │ │ │ │ └────── Pin 6             │ │
+              │ │ │ │ │ │ │ │ └──────── Pin 7 ── Green ───┼─┼─┐
+              │ │ │ │ │ │ │ └────────── Pin 8 ── Purple ──┼─┼─┼─┐
+              │ │ │ │ │ │ └──────────── Pin 9             │ │ │ │
+              │ │ │ │ │ └────────────── Pin 10            │ │ │ │
+              │ │ │ │ └──────────────── Pin 11 ── Blue ───┼─┼─┼─┼─┐
+              │ │ │ └────────────────── Pin 12 ── White ──┼─┼─┼─┼─┼─┐
+              │ │ └──────────────────── Pin 13 ── Red ────┼─┼─┼─┼─┼─┼─┐
+              │ └────────────────────── GND ── Black ──────┼─┼─┼─┼─┼─┼─┼─┐
+              │                                           │ │ │ │ │ │ │ │
+              │ 3 2 1 0 A A A A A R 5 G V │              │ │ │ │ │ │ │ │
+              │ ~ ~ TX RX 0 1 2 3 4 E V N I │              │ │ │ │ │ │ │ │
+              │ ○ ○ ○ ○ ○ ○ ○ ○ ○ F 5 D N │              │ │ │ │ │ │ │ │
+              │ │ │                  └─┘ │ │               │ │ │ │ │ │ │ │
+              │ │ │                     └─┼─── Red ────────┘ │ │ │ │ │ │ │
+              │ │ └─── Pin 2 ── Brown ──────┼─────────────────┘ │ │ │ │ │
+              │ └───── Pin 3 ── Gray ───────┼───────────────────┘ │ │ │ │ │
+              └─────────────────────────────┘                     │ │ │ │ │
+                                                                  │ │ │ │ │
+                                                                  │ │ │ │ │
+              ┌─ LED CIRCUIT ─────────────────────────────────────┘ │ │ │ │
+              │                                                     │ │ │ │
+              │   ┌─────┐    ┌─────┐                                │ │ │ │
+              └──│ LED │────│ 220Ω│─── Black (to GND rail)          │ │ │ │
+                 │ Red │    │Resis│                                 │ │ │ │
+                 └─────┘    └─────┘                                 │ │ │ │
+                  (Long leg) (Short leg)                            │ │ │ │
+                                                                    │ │ │ │
+              ┌─ BUZZER CIRCUIT ──────────────────────────────────────┘ │ │ │
+              │                                                       │ │ │
+              │   ┌─────────┐                                         │ │ │
+              └──│ BUZZER  │─── Black (to GND rail)                  │ │ │
+                 │  + │ -  │                                         │ │ │
+                 └─────────┘                                         │ │ │
+                                                                     │ │ │
+              ┌─ BUTTON CIRCUIT ─────────────────────────────────────────┘ │ │
+              │                                                         │ │
+              │   ┌─────────┐     ┌─────┐                               │ │
+              │   │ BUTTON  │ ┌──│10kΩ │─── Red (to +5V rail)          │ │
+              │   │   ┌─┐   │ │   │Resis│                               │ │
+              └──┤   │ │   ├─┘   └─────┘                               │ │
+                  │   └─┘   │                                           │ │
+                  └─────────┘─── Black (to GND rail)                   │ │
+                                                                       │ │
+              ┌─ LCD CONNECTIONS ──────────────────────────────────────────┘ │
+              │                                                           │
+              │        16x2 LCD DISPLAY                                   │
+              │   ┌─────────────────────────┐                             │
+              │   │ ┌─────────────────────┐ │                             │
+              │   │ │                     │ │                             │
+              │   │ │      DISPLAY        │ │                             │
+              │   │ │                     │ │                             │
+              │   │ └─────────────────────┘ │                             │
+              │   │                         │                             │
+              │   │ 1  2  3  4  5  6  7  8  │                             │
+              │   │VSS VDD V0 RS RW E  D0 D1│                             │
+              │   │ │  │  │  │  │  │  │  │  │                             │
+              │   │ │  │  │  │  │  │  │  │  │                             │
+              │   │ │  │  │  └──┼──┘  │  │  │                             │
+              │   │ │  │  │     │     │  │  │                             │
+              │   │ │  │  │     └─────┼──┘  │                             │
+              │   │ │  │  │           │     │                             │
+              │   │ │  │  │           │ 9 10 11 12 13 14 15 16│           │
+              │   │ │  │  │           │ D2 D3 D4 D5 D6 D7 A  K │           │
+              │   │ │  │  │           │ │  │  │  │  │  │  │  │ │           │
+              │   └─┼──┼──┼───────────┼─┼──┼──┼──┼──┼──┼──┼──┼─┘           │
+              │     │  │  │           │ │  │  │  │  │  │  │  │             │
+              │     │  │  │           │ │  │  │  │  │  │  │  │             │
+        Black ─────┘  │  │           │ │  │  │  │  │  │  │  └── Black      │
+        Red ──────────┘  │           │ │  │  │  │  │  │  └───── Red        │
+        Black ───────────┘           │ │  │  │  │  │  └──────── Gray ──────┘
+        White ────────────────────────┘ │  │  │  │  └─────────── Brown
+        Blue ──────────────────────────┘  │  │  └────────────── Orange
+                                          │  └───────────────── Yellow
+                                          └──────────────────── (not used)
+
+📋 STEP-BY-STEP WIRING INSTRUCTIONS:
+===================================
+
+STEP 1: POWER SETUP
+┌─────────────────────────────────────────────────────────────┐
+│ Connect power rails on breadboard:                         │
+│ 🔴 Red wire: Arduino 5V → Breadboard red rail (+)         │
+│ ⚫ Black wire: Arduino GND → Breadboard blue rail (-)      │
+└─────────────────────────────────────────────────────────────┘
+
+STEP 2: LCD CONNECTIONS (8 wires total)
+┌─────────────────────────────────────────────────────────────┐
+│ LCD Pin 1 (VSS) → Black → Breadboard GND rail             │
+│ LCD Pin 2 (VDD) → Red → Breadboard +5V rail               │
+│ LCD Pin 3 (V0)  → Black → Breadboard GND rail             │
+│ LCD Pin 4 (RS)  → White → Arduino Pin 12                  │
+│ LCD Pin 6 (E)   → Blue → Arduino Pin 11                   │
+│ LCD Pin 11 (D4) → Orange → Arduino Pin 5                  │
+│ LCD Pin 12 (D5) → Yellow → Arduino Pin 4                  │
+│ LCD Pin 13 (D6) → Gray → Arduino Pin 3                    │
+│ LCD Pin 14 (D7) → Brown → Arduino Pin 2                   │
+│ LCD Pin 15 (A)  → Red → Breadboard +5V rail               │
+│ LCD Pin 16 (K)  → Black → Breadboard GND rail             │
+└─────────────────────────────────────────────────────────────┘
+
+STEP 3: LED CIRCUIT (2 wires + resistor)
+┌─────────────────────────────────────────────────────────────┐
+│ Arduino Pin 13 → Red → LED long leg (anode)               │
+│ LED short leg → 220Ω resistor → Black → GND rail          │
+└─────────────────────────────────────────────────────────────┘
+
+STEP 4: BUZZER CIRCUIT (2 wires)
+┌─────────────────────────────────────────────────────────────┐
+│ Arduino Pin 8 → Purple → Buzzer + terminal                │
+│ Buzzer - terminal → Black → GND rail                      │
+└─────────────────────────────────────────────────────────────┘
+
+STEP 5: BUTTON CIRCUIT (3 wires + resistor)
+┌─────────────────────────────────────────────────────────────┐
+│ Arduino Pin 7 → Green → Button terminal 1                 │
+│ Button terminal 1 → 10kΩ resistor → Red → +5V rail        │
+│ Button terminal 2 → Black → GND rail                      │
+└─────────────────────────────────────────────────────────────┘
+
+🛠️ FINAL CHECKLIST:
+==================
+□ Total wires used: 15 jumper wires
+□ Resistors: 1x 220Ω (red-red-brown), 1x 10kΩ (brown-black-orange)
+□ All red wires go to +5V rail
+□ All black wires go to GND rail  
+□ LCD needs 8 connections total
+□ LED has resistor in series
+□ Button has pull-up resistor to +5V
+□ Double-check pin numbers match code
+
+⚠️ SAFETY NOTES:
+================
+- Connect power LAST after all other wires
+- Check polarity on LED (long leg = positive)
+- Buzzer polarity matters (+ and - marked)
+- Don't reverse power connections
+- Use appropriate resistor values
+
+🧪 TESTING:
+===========
+1. Connect USB cable to Arduino
+2. LCD should show "Morse Terminal"
+3. Built-in LED on Pin 13 should blink during encoding
+4. Button press should light LED and sound buzzer
+5. Serial monitor should show system messages
+
+This diagram shows exactly where each wire goes! Follow the colors and pin numbers for easy assembly.
